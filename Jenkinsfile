@@ -6,9 +6,11 @@ pipeline {
         
         stage('build') {
             steps {
-                sh("ls -al")
+                sh("curl -f -L -o ijhttp.zip https://jb.gg/ijhttp/latest")
 
-                sh("docker run --rm --network=host -i -v $PWD:/workdir jetbrains/intellij-http-client -L VERBOSE -e dev -v api-test/test-env.json api-test/test.http")
+                sh("unzip ijhttp.zip")
+
+                sh("ijhttp/ijhttp api-test/test.http --env-file api-test/test-env.json --env dev")
             }
         }
         
