@@ -1,0 +1,14 @@
+###
+
+# 1 - Agify
+< {%
+    request.variables.set('inputName', ['Peter', 'Szabolcs', 'Bence', 'Attila']);
+%}
+GET {{url.agify}}?name={{inputName}}
+Accept: application/json
+
+> {%
+    const result = response.body;
+    client.assert('name' in result, 'name is missing from result');
+    client.assert('age' in result, 'age is missing from result');
+%}
