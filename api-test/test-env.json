@@ -1,0 +1,7 @@
+{
+    "dev": {
+        "url": {
+            "agify": "https://api.agify.io"
+        }
+    }
+}
