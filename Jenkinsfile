@@ -6,7 +6,9 @@ pipeline {
         
         stage('build') {
             steps {
-                sh("docker run --rm --network=host -i -v $PWD/api-test:/workdir jetbrains/intellij-http-client -L VERBOSE -e dev -v test-env.json test.http")
+                sh("ls -al")
+
+                sh("docker run --rm --network=host -i -v $PWD:/workdir jetbrains/intellij-http-client -L VERBOSE -e dev -v api-test/test-env.json api-test/test.http")
             }
         }
         
