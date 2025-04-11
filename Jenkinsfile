@@ -1,9 +1,8 @@
 pipeline {
-    agent { docker { image 'php:8.4.5-alpine3.21' } }
     stages {
         stage('build') {
             steps {
-                sh 'php --version'
+                sh docker run --rm --network="host" -i -t -v $PWD/api-test:/workdir jetbrains/intellij-http-client -L VERBOSE -e dev -v test-env.json test.http
             }
         }
     }
